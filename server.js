@@ -17,10 +17,6 @@ app.use(bodyParser.json());
 app.use(login);
 app.use(register);
 
-app.get("/", (req, res) => {
-  res.send("working");
-});
-
 // Mongoose
 mongoose.connect("mongodb://localhost/mern-ecommerce", {
   useNewUrlParser: true,
