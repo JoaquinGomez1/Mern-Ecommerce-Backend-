@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  id: mongoose.Schema.Types.ObjectId,
+  // Id already included by default in mongoDB
   username: String,
   email: String,
-  password: mongoose.Schema.Types.Mixed,
+  password: String,
   country: String,
   address: String,
   isLoggedIn: Boolean,
   registerDate: Date,
+  phoneNumber: String,
 });
 
-let userModel = mongoose.model("user", userSchema);
+const userModel = mongoose.model("user", userSchema);
 module.exports = userModel;
