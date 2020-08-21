@@ -17,7 +17,10 @@ router.post("/login", async (req, res) => {
     const { _id, address, phoneNumber, registerDate } = userFound;
 
     if (userFound) {
-      const doPasswordsMatch = bcrypt.compare(password, userFound.password);
+      const doPasswordsMatch = await bcrypt.compare(
+        password,
+        userFound.password
+      );
       if (doPasswordsMatch) {
         return res.json({
           _id,

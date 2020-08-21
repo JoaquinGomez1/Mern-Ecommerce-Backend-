@@ -6,6 +6,7 @@ const cors = require("cors");
 // Routes imports
 const login = require("./routes/login");
 const register = require("./routes/register");
+const products = require("./routes/products");
 
 const db = mongoose.connection;
 const app = express();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(login);
 app.use(register);
+app.use(products);
 
 // Mongoose
 mongoose.connect("mongodb://localhost/mern-ecommerce", {
