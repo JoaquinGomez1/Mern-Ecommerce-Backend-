@@ -7,22 +7,21 @@ router.post("/login", async (req, res) => {
   const userSchema = userModel(req.body);
 
   if (Object.values(req.body).includes(""))
-    return res.json({ message: "No empty fields" }).status(400);
+    return res.status(400).json({ message: "No empty fields" });
 
   try {
     const userFound = await userModel.findOne({
       username,
     });
 
-    const { _id, address, phoneNumber, registerDate } = userFound;
-
     if (userFound) {
+      const { _id, address, phoneNumber, registerDate } = userFound;
       const doPasswordsMatch = await bcrypt.compare(
         password,
         userFound.password
       );
       if (doPasswordsMatch) {
-        return res.json({
+        return res.status(200).json({
           _id,
           username: userFound.username,
           address,
@@ -30,7 +29,9 @@ router.post("/login", async (req, res) => {
           registerDate,
           isLoggedIn: true,
         });
-      } else return res.json({ message: "Invalid credentials" }).status(400);
+      } else return res.status(400).json({ message: "Invalid credentials" });
+    } else {
+      return res.status(400).json({ message: "No user found" });
     }
   } catch (err) {
     res.json({ message: "internal server error" }).status(500);

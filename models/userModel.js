@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
   isLoggedIn: Boolean,
   registerDate: Date,
   phoneNumber: String,
+  favoriteProducts: Array,
 });
 
 const userModel = mongoose.model("user", userSchema);
