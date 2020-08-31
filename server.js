@@ -8,6 +8,7 @@ const path = require("path");
 const login = require("./routes/login");
 const register = require("./routes/register");
 const products = require("./routes/products");
+const favorites = require("./routes/favorites");
 
 const db = mongoose.connection;
 const app = express();
@@ -19,12 +20,14 @@ app.use(bodyParser.json());
 app.use(login);
 app.use(register);
 app.use(products);
+app.use(favorites);
 app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
 // Mongoose
 mongoose.connect("mongodb://localhost/mern-ecommerce", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 db.once("open", () => {
