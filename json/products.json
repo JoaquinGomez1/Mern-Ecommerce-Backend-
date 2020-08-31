@@ -1,0 +1,74 @@
+[
+  {
+    "id": "000A6XC",
+    "name": "Ryzen 5 2600",
+    "price": 1500,
+    "img": "https://i.imgur.com/ZK9JChL.jpg",
+    "category": "Black",
+    "qty": 3,
+    "isInStock": true
+  },
+  {
+    "id": "090SB7C",
+    "name": "Nvdia GeForce GTX 1080",
+    "price": 2900,
+    "img": "https://i.imgur.com/DHkFGcF.jpg",
+    "category": "White",
+    "qty": 9,
+    "isInStock": true
+  },
+  {
+    "id": "023AFOC",
+    "name": "Aerocool RGB Pc Case",
+    "price": 1650,
+    "img": "https://i.imgur.com/ysIoQmW.jpg",
+    "category": "Red",
+    "qty": 0,
+    "isInStock": true
+  },
+  {
+    "id": "034A6QR",
+    "name": "RTX 2060 Super",
+    "price": 900,
+    "img": "https://i.imgur.com/hVKuj2x.jpg",
+    "category": "Black",
+    "qty": 2,
+    "isInStock": false
+  },
+  {
+    "id": "100B6ZS",
+    "name": "NZXT Black Mamba Case",
+    "price": 900,
+    "img": "https://i.imgur.com/dYDBiGe.png",
+    "category": "Black",
+    "qty": 1,
+    "isInStock": true
+  },
+  {
+    "id": "000A8SC",
+    "name": "Logitech Keyboard",
+    "price": 780,
+    "img": "https://i.imgur.com/AlGXN56.png",
+    "category": "Black",
+    "qty": 2,
+    "isInStock": true
+  },
+  {
+    "id": "022A6XC",
+    "name": "NZXT VIP-208 RGB",
+    "price": 380,
+    "img": "https://i.imgur.com/z7RbLgE.jpg",
+    "category": "Black",
+    "qty": 8,
+    "isInStock": true
+  },
+  {
+    "id": "004A6XC",
+    "name": "Ryzen 3 3100",
+    "price": 180,
+    "img": "https://i.imgur.com/ypWIUo1.jpg",
+    "category": "Black",
+    "qty": 4,
+    "isInStock": true
+  }
+]

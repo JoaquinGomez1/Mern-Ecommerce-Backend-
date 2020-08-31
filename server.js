@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 
 // Routes imports
 const login = require("./routes/login");
@@ -18,14 +19,21 @@ app.use(bodyParser.json());
 app.use(login);
 app.use(register);
 app.use(products);
+app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
 // Mongoose
 mongoose.connect("mongodb://localhost/mern-ecommerce", {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 db.once("open", () => {
   console.log("Connected to database");
+});
+
+// Default GET
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"));
 });
 
 // ---------- Server listening ---------

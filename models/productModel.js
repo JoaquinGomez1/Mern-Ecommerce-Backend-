@@ -5,11 +5,12 @@ const productSchema = new Schema({
   name: String,
   description: String,
   category: String,
-  isInStock: Boolean,
-  price: Number,
   quantity: Number,
+  isInStock: Boolean, // Added in case the user wants to stop selling a product manually
+  price: Number,
   brand: String,
   color: String,
+  timesBuyed: Number,
 });
 
 const productModel = model("product", productSchema);

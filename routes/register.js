@@ -11,9 +11,6 @@ router.post("/register", async (req, res) => {
   const SALT_ROUNDS = 10;
 
   // ------------- Validation -------------
-  if (dataReceived === undefined || dataReceived === {})
-    return res.status(400).json({ message: "No empty requests" });
-
   if (Object.values(dataReceived).includes(""))
     return res.status(400).json({ message: "No empty fields" });
 
@@ -22,15 +19,15 @@ router.post("/register", async (req, res) => {
 
   if (dataReceived.password.length < 8)
     return res
-      .json({ message: "Password must be at least 8 characters long" })
-      .status(400);
+      .status(400)
+      .json({ message: "Password must be at least 8 characters long" });
 
   if (
     isNaN(dataReceived.phoneNumber) ||
     dataReceived.length < 10 ||
     dataReceived.length > 15
   )
-    return res.json({ message: "Invalid phone number" }).status(400);
+    return res.status(400).json({ message: "Invalid phone number" });
 
   // Save in DB
   try {

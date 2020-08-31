@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  const userSchema = userModel(req.body);
 
   if (Object.values(req.body).includes(""))
     return res.status(400).json({ message: "No empty fields" });
@@ -29,10 +28,9 @@ router.post("/login", async (req, res) => {
           registerDate,
           isLoggedIn: true,
         });
-      } else return res.status(400).json({ message: "Invalid credentials" });
-    } else {
-      return res.status(400).json({ message: "No user found" });
+      }
     }
+    return res.status(400).json({ message: "Invalid credentials" });
   } catch (err) {
     res.json({ message: "internal server error" }).status(500);
     console.log(err);
