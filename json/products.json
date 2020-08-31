@@ -70,5 +70,50 @@
     "category": "Black",
     "qty": 4,
     "isInStock": true
+  },
+  {
+    "id": "004A6XC",
+    "name": "Ryzen 3 3100",
+    "price": 180,
+    "img": "https://i.imgur.com/ypWIUo1.jpg",
+    "category": "Black",
+    "qty": 4,
+    "isInStock": true
+  },
+  {
+    "id": "004A6XC",
+    "name": "Ryzen 3 3100",
+    "price": 180,
+    "img": "https://i.imgur.com/ypWIUo1.jpg",
+    "category": "Black",
+    "qty": 4,
+    "isInStock": true
+  },
+  {
+    "id": "004A6XC",
+    "name": "Ryzen 7 3100",
+    "price": 180,
+    "img": "https://i.imgur.com/ypWIUo1.jpg",
+    "category": "Black",
+    "qty": 1,
+    "isInStock": true
+  },
+  {
+    "id": "004A6XC",
+    "name": "Ryzen 3 3100",
+    "price": 180,
+    "img": "https://i.imgur.com/ypWIUo1.jpg",
+    "category": "Black",
+    "qty": 3,
+    "isInStock": true
+  },
+  {
+    "id": "004A6XC",
+    "name": "Ryzen 3 3100",
+    "price": 280,
+    "img": "https://i.imgur.com/ypWIUo1.jpg",
+    "category": "WHite",
+    "qty": 4,
+    "isInStock": false
   }
 ]

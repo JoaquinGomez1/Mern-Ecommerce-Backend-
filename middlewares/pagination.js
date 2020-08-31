@@ -1,9 +1,11 @@
 function pagination(data) {
   return (req, res, next) => {
-    let { page } = parseInt(req.query);
+    let page = parseInt(req.query.page);
     const maxAmoutOfItems = 10;
 
-    if (page <= 0 || !page) page = 1;
+    if (!page) page = 1;
+
+    console.log(page);
 
     const startIndex = (page - 1) * maxAmoutOfItems;
     const endIndex = page * maxAmoutOfItems;
