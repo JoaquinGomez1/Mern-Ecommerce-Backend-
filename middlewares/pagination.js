@@ -2,17 +2,23 @@ function pagination(data) {
   return (req, res, next) => {
     let page = parseInt(req.query.page);
     const maxAmoutOfItems = 10;
-
+    let myData = data;
     if (!page) page = 1;
+    let startIndex = (page - 1) * maxAmoutOfItems;
+    let endIndex = page * maxAmoutOfItems;
 
-    console.log(page);
+    let results = {};
 
-    const startIndex = (page - 1) * maxAmoutOfItems;
-    const endIndex = page * maxAmoutOfItems;
+    if (req.query.search) {
+      const regEx = new RegExp(req.query.search, "gi");
+      const filteredProducts = data.filter((each) => regEx.exec(each.name));
+      myData = filteredProducts;
+      results.results = filteredProducts;
+    } else {
+      results.results = myData.slice(startIndex, endIndex);
+    }
 
-    const results = {};
-
-    if (endIndex < data.length)
+    if (endIndex < myData.length)
       results.nextPage = {
         page: page + 1,
         itemsAmount: maxAmoutOfItems,
@@ -24,7 +30,6 @@ function pagination(data) {
         itemsAmount: maxAmoutOfItems,
       };
 
-    results.results = data.slice(startIndex, endIndex);
     res.pagination = results;
     next();
   };

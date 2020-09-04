@@ -99,16 +99,16 @@
     "isInStock": true
   },
   {
-    "id": "004A6XC",
-    "name": "Ryzen 3 3100",
+    "id": "004A66C",
+    "name": "Ryzen 3 3150",
     "price": 180,
     "img": "https://i.imgur.com/ypWIUo1.jpg",
     "category": "Black",
-    "qty": 3,
+    "qty": -1,
     "isInStock": true
   },
   {
-    "id": "004A6XC",
+    "id": "004A6X9",
     "name": "Ryzen 3 3100",
     "price": 280,
     "img": "https://i.imgur.com/ypWIUo1.jpg",

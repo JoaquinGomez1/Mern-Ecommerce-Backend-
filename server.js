@@ -24,11 +24,15 @@ app.use(favorites);
 app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
 // Mongoose
-mongoose.connect("mongodb://localhost/mern-ecommerce", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-});
+try {
+  mongoose.connect("mongodb://localhost/mern-ecommerce", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  });
+} catch (err) {
+  console.log(err);
+}
 
 db.once("open", () => {
   console.log("Connected to database");
@@ -41,5 +45,5 @@ app.get("/", (req, res) => {
 
 // ---------- Server listening ---------
 app.listen(PORT, () => {
-  console.log(`Server started on Port: http://localhost:${PORT}`);
+  console.log(`Server started on: http://localhost:${PORT}`);
 });
