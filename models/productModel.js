@@ -1,17 +1,17 @@
-import { Schema, model } from "mongoose";
+const mongoose = require("mongoose");
 
-const productSchema = new Schema({
+const productSchema = new mongoose.Schema({
   // Id already included by default in mongoDB
   name: String,
   description: String,
   category: String,
-  quantity: Number,
+  qty: Number,
   isInStock: Boolean, // Added in case the user wants to stop selling a product manually
   price: Number,
   brand: String,
   color: String,
-  timesBuyed: Number,
+  timesBougth: Number,
 });
 
-const productModel = model("product", productSchema);
-export default productModel;
+const productModel = mongoose.model("product", productSchema);
+module.exports = productModel;

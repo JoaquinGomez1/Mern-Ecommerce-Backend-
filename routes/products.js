@@ -1,14 +1,19 @@
 const router = require("express").Router();
-const products = require("../json/products.json");
+const products = require("../models/productModel");
 const handlePagination = require("../middlewares/pagination");
+const handleSearch = require("../middlewares/search");
 
-router.get("/products", handlePagination(products), (req, res) => {
-  res.json(res.pagination); // res.pagination is set by the handlePagination middleware
-});
+router.get(
+  "/products",
+  handlePagination(products),
+  handleSearch(products, "name"),
+  (req, res) => {
+    res.json(res.pagination); // res.pagination is set by the handlePagination middleware
+  }
+);
 
-router.get("/products/:id", (req, res) => {
-  const searchedProduct = products.find((elem) => elem.id === req.params.id);
-
+router.get("/products/:_id", async (req, res) => {
+  const searchedProduct = await products.findById(req.params._id);
   return res.json(searchedProduct);
 });
 

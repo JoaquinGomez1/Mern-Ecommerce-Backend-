@@ -1,24 +1,23 @@
 function pagination(data) {
-  return (req, res, next) => {
+  return async (req, res, next) => {
     let page = parseInt(req.query.page);
     const maxAmoutOfItems = 10;
+
     let myData = data;
+
     if (!page) page = 1;
     let startIndex = (page - 1) * maxAmoutOfItems;
     let endIndex = page * maxAmoutOfItems;
 
     let results = {};
 
-    if (req.query.search) {
-      const regEx = new RegExp(req.query.search, "gi");
-      const filteredProducts = data.filter((each) => regEx.exec(each.name));
-      myData = filteredProducts;
-      results.results = filteredProducts;
-    } else {
-      results.results = myData.slice(startIndex, endIndex);
-    }
+    results.results = await myData
+      .find()
+      .limit(endIndex)
+      .skip(startIndex)
+      .exec();
 
-    if (endIndex < myData.length)
+    if (endIndex < (await myData.countDocuments()))
       results.nextPage = {
         page: page + 1,
         itemsAmount: maxAmoutOfItems,
