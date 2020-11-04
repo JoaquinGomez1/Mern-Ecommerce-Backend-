@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   isLoggedIn: Boolean,
   registerDate: Date,
   favoriteProducts: Array,
+  shoppingHistory: Array,
 });
 
 const userModel = mongoose.model("user", userSchema);

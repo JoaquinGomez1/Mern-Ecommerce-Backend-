@@ -10,6 +10,7 @@ const register = require("./routes/register");
 const products = require("./routes/products");
 const favorites = require("./routes/favorites");
 const categories = require("./routes/categories");
+const user = require("./routes/user");
 
 const db = mongoose.connection;
 const app = express();
@@ -23,6 +24,7 @@ app.use(register);
 app.use(products);
 app.use(favorites);
 app.use(categories);
+app.use(user);
 app.use(express.static(path.join(__dirname, "..", "client", "build")));
 
 // Mongoose
