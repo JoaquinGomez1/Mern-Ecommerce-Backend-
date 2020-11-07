@@ -1,17 +1,10 @@
-const userSchema = require("../models/userModel");
-
-// User will be authenticated if it's id matches with anyone on the database
-export function authUser(req, res, next) {
-  // model.findById will throw an error if the id passed it's not a valid ObjectId.
-  try {
-    const user = userSchema.findById(req.body.user._id);
-    if (user) {
-      next();
-    }
-
-    return;
-  } catch (err) {
-    console.log(err);
-    return;
-  }
+// Check whether an id exits or not is the most perfomant solution for this demo project
+function authUser(req, res, next) {
+  if (!req.session.userId) {
+    return res
+      .status(401)
+      .json({ message: "Access denied, must be logged in" });
+  } else next();
 }
+
+module.exports = authUser;

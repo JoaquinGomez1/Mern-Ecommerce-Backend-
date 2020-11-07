@@ -6,11 +6,13 @@ const productSchema = new mongoose.Schema({
   description: String,
   category: String,
   qty: Number,
-  isInStock: Boolean, // Added in case the user wants to stop selling a product manually
+  isInStock: { type: Boolean, default: true }, // Added in case the user wants to stop selling a product manually
   price: Number,
   brand: String,
   color: String,
   timesBougth: Number,
+  isInFavorites: Boolean,
+  img: String,
 });
 
 const productModel = mongoose.model("product", productSchema);

@@ -1,10 +1,12 @@
 const userSchema = require("../models/userModel");
 const router = require("express").Router();
 const findUserFavorites = require("../middlewares/findUserFavorites");
+const authUser = require("../middlewares/authUser");
 
 // Add favorite
-router.post("/favorites", (req, res) => {
-  const { userId, item } = req.body;
+router.post("/favorites", authUser, (req, res) => {
+  const { userId } = req.session;
+  const { item } = req.body;
   let itemNoQty = { ...item };
   delete itemNoQty.qty;
 
@@ -22,7 +24,7 @@ router.post("/favorites", (req, res) => {
 });
 
 // Get favorites list
-router.post("/user/favorites", findUserFavorites, async (req, res) => {
+router.get("/user/favorites", authUser, findUserFavorites, async (req, res) => {
   res.json(res.userFavorites);
 });
 

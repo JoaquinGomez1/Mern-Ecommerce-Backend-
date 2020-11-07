@@ -2,7 +2,7 @@ const userSchema = require("../models/userModel");
 const productsSchema = require("../models/productModel");
 
 async function findUserFavorites(req, res, next) {
-  const user = await userSchema.findById(req.body._id);
+  const user = await userSchema.findById(req.session.userId);
   if (!user) next();
 
   // Will return an array of every favorite item that user has
