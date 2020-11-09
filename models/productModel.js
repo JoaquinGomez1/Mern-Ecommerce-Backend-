@@ -2,17 +2,14 @@ const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
   // Id already included by default in mongoDB
-  name: String,
+  name: { type: String, required: true },
   description: String,
-  category: String,
-  qty: Number,
+  category: { type: String, required: true },
+  qty: { type: Number, default: 1 },
   isInStock: { type: Boolean, default: true }, // Added in case the user wants to stop selling a product manually
-  price: Number,
-  brand: String,
-  color: String,
-  timesBougth: Number,
+  price: { type: Number, default: 1 },
   isInFavorites: Boolean,
-  img: String,
+  img: { type: String, required: true },
 });
 
 const productModel = mongoose.model("product", productSchema);
