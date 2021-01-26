@@ -10,6 +10,11 @@ router.post("/favorites", authUser, (req, res) => {
   let itemNoQty = { ...item };
   delete itemNoQty.qty;
 
+  if (!item || !item._id)
+    return res
+      .status(400)
+      .json({ message: "Cannot post null favorite product" });
+
   userSchema.findOneAndUpdate(
     { _id: userId },
     { $addToSet: { favoriteProducts: { _id: item._id } } },
@@ -28,10 +33,19 @@ router.get("/user/favorites", authUser, findUserFavorites, async (req, res) => {
   res.json(res.userFavorites);
 });
 
-// // For testing purposes only. Delete later
-// router.get("/usersAll", async (req, res) => {
-//   const users = await userSchema.find();
-//   res.json(users);
-// });
-
+router.delete("/user/favorites", authUser, (req, res) => {
+  const { productId } = req.body;
+  const { userId } = req.session;
+  userSchema
+    .findOneAndUpdate(
+      { _id: userId },
+      { $pull: { favoriteProducts: { _id: productId } } }
+    )
+    .then((message) => {
+      res.json({ message });
+    })
+    .catch((message) => {
+      res.json({ message });
+    });
+});
 module.exports = router;

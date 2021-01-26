@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   role: { type: String, default: "member" },
   email: String,
   password: String,
-  country: String,
+  gender: String,
   address: String,
   isLoggedIn: Boolean,
   registerDate: Date,

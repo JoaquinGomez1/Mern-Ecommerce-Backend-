@@ -45,7 +45,12 @@ router.post("/register", async (req, res) => {
     // Create a copy of the schema to send to the user as authentication
     let schemaCopy = { ...userSchema._doc };
     delete schemaCopy.password;
-    schemaCopy.isLoggedIn = true;
+
+    const { _id, username } = userSchema;
+
+    // Save data into session (login user)
+    req.session.userId = _id;
+    req.session.username = username;
 
     // Send back a response
     res.status(200).json(schemaCopy);

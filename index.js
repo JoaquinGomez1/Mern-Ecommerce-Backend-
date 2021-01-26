@@ -10,23 +10,24 @@ const login = require("./routes/login");
 const register = require("./routes/register");
 const products = require("./routes/products");
 const favorites = require("./routes/favorites");
+const orders = require("./routes/orders");
 const categories = require("./routes/categories");
 const user = require("./routes/user");
 const logout = require("./routes/logout");
 
+// DOTENV Files
+require("dotenv").config();
+
 // Config variables
 const PORT = process.env.PORT || 3100;
 const cookieMaxAge = 1000 * 60 * 60 * 24; // 24 Hours
-const dbString = "mongodb://localhost/mern-ecommerce";
+const dbString = process.env.MONGO_ATLAS;
 const dbOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 };
 const connection = mongoose.createConnection(dbString, dbOptions);
-
-// DOTENV Files
-require("dotenv").config();
 
 const app = express();
 
@@ -69,6 +70,7 @@ app.use(favorites);
 app.use(categories);
 app.use(user);
 app.use(logout);
+app.use(orders);
 
 app.listen(PORT, () => {
   console.log("Server started on port: http://localhost:" + PORT);
