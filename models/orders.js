@@ -6,6 +6,7 @@ const orderSchema = new mongoose.Schema({
   products: { type: Array, required: true },
   completed: { type: Boolean, default: false },
   address: { type: String, required: true },
+  total: { type: Number, required: true },
 });
 
 const orderModel = mongoose.model("order", orderSchema);
