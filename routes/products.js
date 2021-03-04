@@ -6,8 +6,8 @@ const adminOnly = require("../middlewares/adminOnly");
 const removeEmptyFields = require("../utils/removeEmptyFields");
 const path = require("path");
 
-router.get("/products/", (req, res) =>
-  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+router.get("/products", (req, res) =>
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"))
 );
 
 router.get("/products/:id", (req, res) =>
