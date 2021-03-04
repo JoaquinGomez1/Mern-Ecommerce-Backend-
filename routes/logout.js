@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const authProtected = require("../middlewares/authUser");
 
-router.get("/logout", authProtected, (req, res) => {
+router.get("/api/logout", authProtected, (req, res) => {
   try {
     req.session.destroy();
     res.json({ message: "LogedOut" });

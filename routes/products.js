@@ -4,9 +4,18 @@ const handlePagination = require("../middlewares/pagination");
 const handleSearch = require("../middlewares/search");
 const adminOnly = require("../middlewares/adminOnly");
 const removeEmptyFields = require("../utils/removeEmptyFields");
+const path = require("path");
+
+router.get("/products/", (req, res) =>
+  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+);
+
+router.get("/products/:id", (req, res) =>
+  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+);
 
 router.get(
-  "/products",
+  "/api/products",
   handlePagination(products),
   handleSearch(products, "name"),
   (req, res) => {
@@ -14,13 +23,13 @@ router.get(
   }
 );
 
-router.get("/products/:_id", async (req, res) => {
+router.get("/api/products/:_id", async (req, res) => {
   const searchedProduct = await products.findById(req.params._id);
   return res.json(searchedProduct);
 });
 
 // --------------------------------- Add products
-router.post("/products/add", adminOnly, async (req, res) => {
+router.post("/api/products/add", adminOnly, async (req, res) => {
   const { product } = req.body;
   if (!product)
     return res.status(400).json({ message: "product body cannot be empty" });
@@ -31,7 +40,7 @@ router.post("/products/add", adminOnly, async (req, res) => {
 });
 
 // --------------------------------- Update products
-router.post("/products/modify", adminOnly, async (req, res) => {
+router.post("/api/products/modify", adminOnly, async (req, res) => {
   const { fields } = req.body;
 
   if (!fields)
@@ -50,7 +59,7 @@ router.post("/products/modify", adminOnly, async (req, res) => {
 
 // --------------------------------- Delete products
 // (same 'update products's route but using delete method instead)
-router.delete("/products/modify", adminOnly, async (req, res) => {
+router.delete("/api/products/modify", adminOnly, async (req, res) => {
   const { productId } = req.body;
   if (!productId)
     return res.status(400).json({ message: "No product id was provided" });

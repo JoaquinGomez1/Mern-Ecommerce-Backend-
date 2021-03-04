@@ -2,8 +2,13 @@ const router = require("express").Router();
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const publicRoute = require("../middlewares/publicRouteOnly");
+const path = require("path");
 
-router.post("/login", publicRoute, async (req, res) => {
+router.get("/login", (req, res) =>
+  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+);
+
+router.post("/api/login", publicRoute, async (req, res) => {
   const { username, password } = req.body;
 
   if (Object.values(req.body).includes(""))

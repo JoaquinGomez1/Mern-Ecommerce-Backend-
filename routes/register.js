@@ -2,7 +2,7 @@ const router = require("express").Router();
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
-router.post("/register", async (req, res) => {
+router.post("/api/register", async (req, res) => {
   const dataReceived = req.body;
   const userSchema = userModel(dataReceived);
   const userAlreadyRegistered = await userModel.findOne({

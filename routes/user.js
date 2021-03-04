@@ -1,8 +1,13 @@
 const userSchema = require("../models/userModel");
 const router = require("express").Router();
 const authUser = require("../middlewares/authUser");
+const path = require("path");
 
-router.get("/user", authUser, async (req, res) => {
+router.get("/user", (req, res) =>
+  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+);
+
+router.get("/api/user", authUser, async (req, res) => {
   const { userId } = req.session;
   const user = await userSchema.findById(userId);
 
@@ -17,7 +22,7 @@ router.get("/user", authUser, async (req, res) => {
 });
 
 // Add item at the shopping History
-router.post("/user/historyy", authUser, async (req, res) => {
+router.post("/api/user/historyy", authUser, async (req, res) => {
   const { userId } = req.session;
   let { shoppingHistory } = req.body;
   if (!shoppingHistory) return res.status(500).json({ message: "Bad request" });
@@ -28,7 +33,7 @@ router.post("/user/historyy", authUser, async (req, res) => {
   res.status(200).json({ history: user.shoppingHistory });
 });
 
-router.get("/user/history", authUser, async (req, res) => {
+router.get("/api/user/history", authUser, async (req, res) => {
   const { userId } = req.session;
   const currentUser = await userSchema.findById(userId);
   res.status(200).json(currentUser.shoppingHistory);

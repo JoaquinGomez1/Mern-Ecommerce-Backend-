@@ -4,7 +4,7 @@ const findUserFavorites = require("../middlewares/findUserFavorites");
 const authUser = require("../middlewares/authUser");
 
 // Add favorite
-router.post("/favorites", authUser, (req, res) => {
+router.post("/api/favorites", authUser, (req, res) => {
   const { userId } = req.session;
   const { item } = req.body;
   let itemNoQty = { ...item };
@@ -29,11 +29,16 @@ router.post("/favorites", authUser, (req, res) => {
 });
 
 // Get favorites list
-router.get("/user/favorites", authUser, findUserFavorites, async (req, res) => {
-  res.json(res.userFavorites);
-});
+router.get(
+  "/api/user/favorites",
+  authUser,
+  findUserFavorites,
+  async (req, res) => {
+    res.json(res.userFavorites);
+  }
+);
 
-router.delete("/user/favorites", authUser, (req, res) => {
+router.delete("/api/user/favorites", authUser, (req, res) => {
   const { productId } = req.body;
   const { userId } = req.session;
   userSchema
