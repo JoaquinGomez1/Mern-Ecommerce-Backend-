@@ -4,7 +4,7 @@ const authUser = require("../middlewares/authUser");
 const path = require("path");
 
 router.get("/user", (req, res) =>
-  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"))
 );
 
 router.get("/api/user", authUser, async (req, res) => {

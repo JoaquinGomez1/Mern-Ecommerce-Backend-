@@ -1,6 +1,11 @@
 const router = require("express").Router();
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const path = require("path");
+
+router.get("/register", (req, res) =>
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"))
+);
 
 router.post("/api/register", async (req, res) => {
   const dataReceived = req.body;
