@@ -10,7 +10,7 @@ router.get("/products", (req, res) =>
   res.sendFile(path.join(__dirname, "..", "build", "index.html"))
 );
 
-router.get("/products/:id", (req, res) =>
+router.get("/products:id", (req, res) =>
   res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
 );
 

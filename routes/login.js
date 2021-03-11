@@ -5,7 +5,7 @@ const publicRoute = require("../middlewares/publicRouteOnly");
 const path = require("path");
 
 router.get("/login", (req, res) =>
-  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"))
 );
 
 router.post("/api/login", publicRoute, async (req, res) => {

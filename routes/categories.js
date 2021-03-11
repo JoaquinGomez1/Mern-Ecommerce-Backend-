@@ -6,7 +6,7 @@ const products = require("../models/productModel");
 const path = require("path");
 
 router.get("/categories", (req, res) =>
-  res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"))
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"))
 );
 
 router.get("/api/categories", handlePagination(categoryModel), (req, res) => {
